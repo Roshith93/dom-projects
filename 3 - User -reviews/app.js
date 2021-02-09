@@ -43,8 +43,6 @@ const author = document.getElementById('author')
 const job = document.getElementById('job')
 const info = document.getElementById('info')
 const buttonContainer = document.querySelector('.button-container')
-const nextButton = document.querySelector('.next-btn')
-const prevButton = document.querySelector('.prev-btn')
 const randomButton = document.querySelector('.random-btn')
 
 
@@ -74,4 +72,9 @@ allButton.forEach((button) => {
       setData(arrayIndex)
     }
   })
+})
+//  = random reviews  
+randomButton.addEventListener('click', function(e){
+  arrayIndex = Math.floor(Math.random() * reviews.length)
+  setData(arrayIndex)
 })
