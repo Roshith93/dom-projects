@@ -42,17 +42,36 @@ const imgContainer = article.querySelector('div > img')
 const author = document.getElementById('author')
 const job = document.getElementById('job')
 const info = document.getElementById('info')
+const buttonContainer = document.querySelector('.button-container')
 const nextButton = document.querySelector('.next-btn')
 const prevButton = document.querySelector('.prev-btn')
+const randomButton = document.querySelector('.random-btn')
 
-// name, job, img, text
-// console.log(author)
-// function setInitialValue (e) {
-//   author.textContent = reviews[0].name
-// }
+
+let arrayIndex = 0
+const setData = (personIndex) => {
+  let { img, name, job, text } = reviews[personIndex]
+  imgContainer.src = img
+  author.textContent = name
+  job.textContent = job
+  info.textContent = text
+}
+
 document.addEventListener('DOMContentLoaded', function (e) {
-  imgContainer.src = reviews[0].img
-  author.textContent = reviews[0].name
-  job.textContent = reviews[0].job
-  info.textContent = reviews[0].text
+  setData(arrayIndex)
+})
+const allButton = buttonContainer.querySelectorAll('button')
+allButton.forEach((button) => {
+  button.addEventListener('click', function (e) {
+    if (button.className === 'prev-btn') {
+      arrayIndex--
+      if (arrayIndex < 0) arrayIndex++
+      setData(arrayIndex)
+    }
+    if (button.className === 'next-btn') {
+      arrayIndex++
+      if (arrayIndex > reviews.length - 1) arrayIndex = reviews.length - 1
+      setData(arrayIndex)
+    }
+  })
 })
